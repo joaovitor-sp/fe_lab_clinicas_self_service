@@ -7,17 +7,17 @@ import 'package:fe_lab_clinicas_core/fe_lab_clinicas_core.dart';
 import './user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
+  final RestClient restClient;
   UserRepositoryImpl({
     required this.restClient,
   });
-  final RestClient restClient;
 
   @override
   Future<Either<AuthException, String>> login(
       String email, String password) async {
     try {
       final Response(data: {'access_token': accessToken}) =
-          await restClient.unAuth.post('auth',
+          await restClient.unAuth.post('/auth',
               data: {'email': email, 'password': password, 'admin': true});
 
       return Right(accessToken);
