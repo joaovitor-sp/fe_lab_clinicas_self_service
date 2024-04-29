@@ -13,8 +13,8 @@ class FindPatientPage extends StatefulWidget {
 }
 
 class _FindPatientPageState extends State<FindPatientPage> {
-final formKey = GlobalKey<FormState>();
-final documentEC = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  final documentEC = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +31,7 @@ final documentEC = TextEditingController();
                 ),
               ];
             },
-            onSelected: (value) async {
-             
-            },
+            onSelected: (value) async {},
           )
         ],
       ),
@@ -64,20 +62,38 @@ final documentEC = TextEditingController();
                         const SizedBox(
                           height: 48,
                         ),
-                        const Text(
-                          'Bem-vindo!',
-                          style: LabClinicasTheme.titleStyle,
-                        ),
-                        const SizedBox(
-                          height: 48,
-                        ),
                         TextFormField(
                           controller: documentEC,
-                          validator:
-                              Validatorless.required('CPF Obrigatório'),
+                          validator: Validatorless.required('CPF Obrigatório'),
                           decoration: const InputDecoration(
-                            label: Text('Digite seu nome'),
+                            label: Text('Digite o CPF do Paciente'),
                           ),
+                        ),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        Row(
+                          children: [
+                            const Text(
+                              "Não sabe o CPF do paciente",
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: LabClinicasTheme.blueColor,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                "Clique aqui",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: LabClinicasTheme.orangeColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         const SizedBox(
                           height: 24,
