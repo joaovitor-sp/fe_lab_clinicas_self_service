@@ -13,7 +13,7 @@ class PatientAddressModel {
   });
 
   final String cep;
-  @JsonKey(name: 'streetaddress')
+  @JsonKey(name: 'street_address')
   final String streetAddress;
   final String state;
   final String city;
