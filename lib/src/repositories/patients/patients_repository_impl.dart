@@ -28,4 +28,16 @@ class PatientsRepositoryImpl implements PatientsRepository {
       return Left(RepositoryException());
     }
   }
+
+  @override
+  Future<Either<RepositoryException, Unit>> update(PatientModel patient) async {
+    try {
+      await restClient.auth
+          .put('/patient/${patient.id}', data: patient.toJson());
+      return Right(unit);
+    } on Exception catch (e, s) {
+      log('Erro ao atualizar o paciente', error: e, stackTrace: s);
+      return Left(RepositoryException());
+    }
+  }
 }
