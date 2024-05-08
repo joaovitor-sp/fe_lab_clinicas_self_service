@@ -33,7 +33,35 @@ class PatientsRepositoryImpl implements PatientsRepository {
   Future<Either<RepositoryException, Unit>> update(PatientModel patient) async {
     try {
       await restClient.auth
-          .put('/patient/${patient.id}', data: patient.toJson());
+          .put('/patients/${patient.id}', data: patient.toJson());
+      return Right(unit);
+    } on Exception catch (e, s) {
+      log('Erro ao atualizar o paciente', error: e, stackTrace: s);
+      return Left(RepositoryException());
+    }
+  }
+  
+  @override
+  Future<Either<RepositoryException, PatientModel>> register(RegisterPatientModel patient) async {
+    try {
+      await restClient.auth
+          .post('/patients', data: {
+            'name': patient.
+      'email': patient.
+      'phone_number': patient.
+      'document': patient.
+      'address': {
+        'cep': patient.
+        'street_address': patient.
+        'number': patient.
+        'address_complement': patient.
+        'state': patient.
+        'city': patient.
+        'district': patient.
+      },
+      'guardian': patient.
+      'guardian_identification_number': patient.
+          });
       return Right(unit);
     } on Exception catch (e, s) {
       log('Erro ao atualizar o paciente', error: e, stackTrace: s);

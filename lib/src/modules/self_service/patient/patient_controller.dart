@@ -14,6 +14,7 @@ class PatientController with MessageStateMixin {
   final PatientsRepository _repository;
   PatientModel? patient;
   final _nextStep = signal<bool>(false);
+  bool get nextStep => _nextStep();
 
   void goNextStep() {
     _nextStep.value = true;
