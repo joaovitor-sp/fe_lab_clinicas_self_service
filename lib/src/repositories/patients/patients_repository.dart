@@ -14,6 +14,7 @@ typedef RegisterPatientAddressModel = ({
 typedef RegisterPatientModel = ({
   String name,
   String email,
+  String phoneNumber,
   String document,
   RegisterPatientAddressModel address,
   String guardian,

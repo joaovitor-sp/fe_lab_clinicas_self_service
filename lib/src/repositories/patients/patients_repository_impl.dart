@@ -44,25 +44,25 @@ class PatientsRepositoryImpl implements PatientsRepository {
   @override
   Future<Either<RepositoryException, PatientModel>> register(RegisterPatientModel patient) async {
     try {
-      await restClient.auth
+      final Response(:data) = await restClient.auth
           .post('/patients', data: {
-            'name': patient.
-      'email': patient.
-      'phone_number': patient.
-      'document': patient.
+            'name': patient.name,
+      'email': patient.email,
+      'phone_number': patient.phoneNumber,
+      'document': patient.document,
       'address': {
-        'cep': patient.
-        'street_address': patient.
-        'number': patient.
-        'address_complement': patient.
-        'state': patient.
-        'city': patient.
-        'district': patient.
+        'cep': patient.address.cep,
+        'street_address': patient.address.streetAddress,
+        'number': patient.address.number,
+        'address_complement': patient.address.addressComplement,
+        'state': patient.address.state,
+        'city': patient.address.city,
+        'district': patient.address.district,
       },
-      'guardian': patient.
-      'guardian_identification_number': patient.
+      'guardian': patient.guardian,
+      'guardian_identification_number': patient.guardianIdentificationNumber,
           });
-      return Right(unit);
+      return Right(PatientModel.fromJson(data));
     } on Exception catch (e, s) {
       log('Erro ao atualizar o paciente', error: e, stackTrace: s);
       return Left(RepositoryException());
